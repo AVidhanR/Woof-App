@@ -86,18 +86,12 @@ fun WoofApp() {
     }
 }
 
-/**
- * Composable that displays a list item containing a dog icon and their information.
- *
- * @param dog contains the data that populates the list item
- * @param modifier modifiers to set to this composable
- */
 @Composable
 fun DogItem(
     dog: Dog,
     modifier: Modifier = Modifier
 ) {
-    val expanded by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
     Card(modifier = modifier) {
         Column(
             modifier = Modifier
@@ -118,7 +112,7 @@ fun DogItem(
                 Spacer(modifier = Modifier.weight(1f))
                 DogItemButton(
                     expanded = expanded,
-                    onClick = { expanded != expanded }
+                    onClick = { expanded = !expanded }
                 )
             }
             if (expanded) {
@@ -154,12 +148,6 @@ fun DogItemButton(
     }
 }
 
-/**
- * Composable that displays a photo of a dog.
- *
- * @param dogIcon is the resource ID for the image of the dog
- * @param modifier modifiers to set to this composable
- */
 @Composable
 fun DogIcon(
     @DrawableRes dogIcon: Int,
@@ -179,13 +167,6 @@ fun DogIcon(
     )
 }
 
-/**
- * Composable that displays a dog's name and age.
- *
- * @param dogName is the resource ID for the string of the dog's name
- * @param dogAge is the Int that represents the dog's age
- * @param modifier modifiers to set to this composable
- */
 @Composable
 fun DogInformation(
     @StringRes dogName: Int,
@@ -247,9 +228,6 @@ fun DogHobby(
     }
 }
 
-/**
- * Composable that displays what the UI of the app looks like in light theme in the design tab.
- */
 @Preview
 @Composable
 fun WoofPreview() {
